@@ -1,4 +1,5 @@
-# medinfoR
+# medinfoR <img src="medinfo_logo.svg" align="right" width="120" />
+
 R package to access the  medinfo API
 
 ## Installation
@@ -22,7 +23,7 @@ creds <- api_login("https://medinfo.precisiondosing.de/api/v1", "your_username",
 
 ### Get formulations (e.g. to test the API connection)
 ```R
-formulations <- get_formulations(creds)
+formulations <- api_formulations(creds)
 print(formulations)
 ```
 
