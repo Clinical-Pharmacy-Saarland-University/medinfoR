@@ -1,5 +1,3 @@
-
-
 api_formulations <- function(creds) {
   token <- creds$access_token
   host <- creds$host
@@ -12,7 +10,8 @@ api_formulations <- function(creds) {
   formulations <- req |>
     httr2::req_perform() |>
     httr2::resp_body_json() |>
-    purrr::pluck("data")
+    purrr::pluck("data") |>
+    dplyr::bind_rows()
 
   return(formulations)
 }
