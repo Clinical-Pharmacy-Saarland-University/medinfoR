@@ -1,4 +1,4 @@
-# medinfoR <img src="medinfo_logo.svg" align="right" width="120" />
+# medinfoR <img src="medinfo_logo.svg" align="right" width="150" />
 
 R package to access the  medinfo API
 
@@ -14,11 +14,18 @@ devtools::install_github("Clinical-Pharmacy-Saarland-University/medinfoR")
 
 ## Usage
 
+### Set password
+Upon registration, you will receive an initial token via email. Use this token to set your password:
+```R
+api_user_init_password("https://medinfo.precisiondosing.de/api/v1", "your_username", "init_token", "new_password")
+```
+
 ### Login
+To login, use your username and password:
 ```R
 library(medinfoR)
 
-creds <- api_login("https://medinfo.precisiondosing.de/api/v1", "your_username", "your_password", "user")
+creds <- api_login("https://medinfo.precisiondosing.de/api/v1", "your_username", "your_password")
 ```
 
 ### Get formulations (e.g. to test the API connection)
