@@ -4,7 +4,7 @@
 \alias{api_login}
 \title{Login to the API}
 \usage{
-api_login(host, user, password, role)
+api_login(host, user, password, role = NULL)
 }
 \arguments{
 \item{host}{The host of the API}
