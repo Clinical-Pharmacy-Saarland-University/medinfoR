@@ -36,8 +36,25 @@ print(formulations)
 
 ### Drug-drug interactions (using PZNs)
 ```R
+# single interaction check
 pzns <- c("03041347", "05538454", "13880764", "00189747", "01970060", "00054065", "17145955", "00592733", "13981502")
 ddis <- api_interaction_pzn(creds, pzns)
 print(ddis)
+
+# batch interaction check
+pzn_batches <- list(
+  list(
+    pzns = c("13592031", "00007350"),
+    id = 1,
+    details = TRUE
+  ),
+  list(
+    pzns = c("03041347", "05538454", "13880764", "00189747", "01970060", "00054065", "17145955", "00592733", "13981502"),
+    id = 2,
+    details = TRUE
+  )
+)
+res <- api_interaction_pzn_batch(creds, pzn_batches)
+print(res)
 ```
 

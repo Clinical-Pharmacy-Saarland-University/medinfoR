@@ -1,9 +1,10 @@
 Package: medinfoR
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
-Authors@R: 
-    person("Dominik", "Selzer", "dominik.selzer@uni-saarland.de", role = ("aut", "cre"))
-    person("Simeon", "Ruedesheim", "simeon.ruedesheim@uni-saarland.de", role = ("aut", "cre"))
+Authors@R: c(
+      person("Dominik", "Selzer", , "dominik.selzer@uni-saarland.de", role = c("aut", "cre")),
+      person("Simeon", "Rüdesheim", , "simeon.ruedesheim@uni-saarland.de", role = c("aut", "ctb"))
+      )
 Description: R package to access the medinfo API
 License: MIT + file LICENSE
 Encoding: UTF-8
