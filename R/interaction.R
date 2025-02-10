@@ -72,6 +72,8 @@ api_interaction_pzn_batch <- function(creds, pzn_batches) {
     purrr::map(~ {
       list(
         id = .x$id,
+        status = .x$status,
+        message = .x$message,
         interactions = .listToDf(.x$interactions)
       )
     })
