@@ -15,13 +15,13 @@ api_login <- function(host, user, password, role = NULL) {
   req <- login_url |>
     httr2::request() |>
     httr2::req_body_json(list(login = user, password = password, role = role))
- 
+
   login <- req |>
     httr2::req_perform() |>
     httr2::resp_body_json() |>
     purrr::pluck("data")
- 
-  login$host = host
+
+  login$host <- host
   return(login)
 }
 
@@ -48,6 +48,6 @@ api_user_init_password <- function(host, user, token, password) {
     httr2::resp_body_json() |>
     purrr::pluck("data")
 
-  res$host = host
+  res$host <- host
   return(res)
 }

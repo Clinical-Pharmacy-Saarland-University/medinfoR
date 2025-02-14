@@ -43,7 +43,7 @@ api_interaction_pzn <- function(creds, pzns, details = FALSE) {
 #' @examples
 #' \dontrun{
 #' creds <- api_login("https://api.example.com", "username", "password", "user")
-#' api_interaction_pzn(creds, list(list(pzns = c("PZN1", "PZN2"), id = 1, details = TRUE)))
+#' api_interaction_pzn_batch(creds, list(list(pzns = c("PZN1", "PZN2"), id = 1, details = TRUE)))
 #' }
 api_interaction_pzn_batch <- function(creds, pzn_batches) {
   token <- creds$access_token
