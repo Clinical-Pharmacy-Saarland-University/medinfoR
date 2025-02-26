@@ -70,10 +70,10 @@ ApiCredentials <- R6::R6Class("ApiCredentials",
       self$access_token <- access_token
       self$refresh_token <- refresh_token
       self$token_type <- token_type
-      self$access_expires_in <- as.POSIXct(access_expires_in, format = "%Y-%m-%dT%H:%M:%OSZ", tz = "UTC")
-      self$refresh_expires_in <- as.POSIXct(refresh_expires_in, format = "%Y-%m-%dT%H:%M:%OSZ", tz = "UTC")
+      self$access_expires_in <- as.POSIXct(access_expires_in, format = "%Y-%m-%dT%H:%M:%OS", tz = "UTC")
+      self$refresh_expires_in <- as.POSIXct(refresh_expires_in, format = "%Y-%m-%dT%H:%M:%OS", tz = "UTC")
       self$role <- role
-      self$last_login <- as.POSIXct(last_login, format = "%Y-%m-%dT%H:%M:%OSZ", tz = "UTC")
+      self$last_login <- as.POSIXct(last_login, format = "%Y-%m-%dT%H:%M:%OS", tz = "UTC")
       self$host <- host
     },
 
@@ -110,13 +110,13 @@ ApiCredentials <- R6::R6Class("ApiCredentials",
       self$access_token <- refresh$access_token
       self$refresh_token <- refresh$refresh_token
       self$access_expires_in <- as.POSIXct(refresh$access_expires_in,
-        format = "%Y-%m-%dT%H:%M:%OSZ", tz = "UTC"
+        format = "%Y-%m-%dT%H:%M:%OS", tz = "UTC"
       )
       self$refresh_expires_in <- as.POSIXct(refresh$refresh_expires_in,
-        format = "%Y-%m-%dT%H:%M:%OSZ", tz = "UTC"
+        format = "%Y-%m-%dT%H:%M:%OS", tz = "UTC"
       )
       self$last_login <- as.POSIXct(refresh$last_login,
-        format = "%Y-%m-%dT%H:%M:%OSZ", tz = "UTC"
+        format = "%Y-%m-%dT%H:%M:%OS", tz = "UTC"
       )
     },
 
@@ -166,7 +166,7 @@ api_login <- function(host, user, password, role = c("default", "user", "admin")
   checkmate::assert_string(password)
   role <- match.arg(role)
 
-  host <- .remove_traling_slash(host)
+  host <- .remove_trailing_slash(host)
   if (role == "default") {
     role <- NULL
   }
@@ -205,7 +205,7 @@ api_user_init_password <- function(host, user, token, password) {
   checkmate::assert_string(user)
   checkmate::assert_string(token)
   checkmate::assert_string(password)
-  host <- .remove_traling_slash(host)
+  host <- .remove_trailing_slash(host)
 
   login_url <- paste0(host, "/user/password/init")
   body <- list(token = token, email = user, password = password)

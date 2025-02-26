@@ -4,7 +4,7 @@
 \alias{api_login}
 \title{Login to the API}
 \usage{
-api_login(host, user, password, role = NULL)
+api_login(host, user, password, role = c("default", "user", "admin"))
 }
 \arguments{
 \item{host}{The host of the API}
@@ -16,7 +16,7 @@ api_login(host, user, password, role = NULL)
 \item{role}{The role of the user. Any of "user" or "admin".}
 }
 \value{
-A list with the access token and the host
+An \code{ApiCredentials} object with the login information.
 }
 \description{
 Login to the API
@@ -25,4 +25,9 @@ Login to the API
 \dontrun{
 api_login("https://api.example.com", "user", "password", "user")
 }
+}
+\seealso{
+\link{ApiCredentials} for the object structure.
+
+\code{\link[=api_user_init_password]{api_user_init_password()}} to set the password.
 }

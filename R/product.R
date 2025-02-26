@@ -15,17 +15,12 @@ api_product_compounds_pzn <- function(creds, pzns) {
   host <- creds$host
 
   active_compounds_url <- paste0(host, "/product/activecompounds/pzns")
-  req <- active_compounds_url |>
-    httr2::request() |>
-    httr2::req_auth_bearer_token(token) |>
-    httr2::req_url_query(
-      pzns = paste(pzns, collapse = ",")
-    )
 
-  active_compounds <- req |>
-    httr2::req_perform() |>
-    httr2::resp_body_json() |>
-    purrr::pluck("active_compounds") |>
+  active_compounds <- .get(
+    active_compounds_url,
+    parameters = list(pzns = paste(pzns, collapse = ",")),
+    credentials = creds
+  ) |>
     purrr::map(~ purrr::map(.x, .listToDf)) |>
     purrr::flatten() |>
     data.table::rbindlist() |>
@@ -47,21 +42,14 @@ api_product_compounds_pzn <- function(creds, pzns) {
 #' api_product_info_pzn(creds, c("PZN1", "PZN2"))
 #' }
 api_product_info_pzn <- function(creds, pzns) {
-  token <- creds$access_token
   host <- creds$host
 
   info_url <- paste0(host, "/product/info/pzns")
-  req <- info_url |>
-    httr2::request() |>
-    httr2::req_auth_bearer_token(token) |>
-    httr2::req_url_query(
-      pzns = paste(pzns, collapse = ",")
-    )
-
-  info <- req |>
-    httr2::req_perform() |>
-    httr2::resp_body_json() |>
-    purrr::pluck("product_info") |>
+  info <- .get(
+    info_url,
+    parameters = list(pzns = paste(pzns, collapse = ",")),
+    credentials = creds
+  ) |>
     .listToDf()
 
   return(info)

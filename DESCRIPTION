@@ -1,6 +1,6 @@
 Package: medinfoR
 Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Version: 0.0.1.1
 Authors@R: c(
       person("Dominik", "Selzer", , "dominik.selzer@uni-saarland.de", role = c("aut", "cre")),
       person("Simeon", "Rüdesheim", , "simeon.ruedesheim@uni-saarland.de", role = c("aut", "ctb"))

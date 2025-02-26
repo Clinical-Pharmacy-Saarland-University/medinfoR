@@ -2,7 +2,8 @@
 % Please edit documentation in R/login.R
 \name{api_user_init_password}
 \alias{api_user_init_password}
-\title{Set password}
+\title{Initialize password
+This function is used to set the password for a new user account.}
 \usage{
 api_user_init_password(host, user, token, password)
 }
@@ -19,7 +20,8 @@ api_user_init_password(host, user, token, password)
 A list with the response and the host
 }
 \description{
-Set password
+Initialize password
+This function is used to set the password for a new user account.
 }
 \examples{
 \dontrun{
