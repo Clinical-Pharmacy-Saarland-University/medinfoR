@@ -13,5 +13,10 @@ RoxygenNote: 7.3.2
 Imports: 
     dplyr,
     purrr,
-    httr2
+    httr2,
+    R6,
+    stringr,
+    checkmate,
+    jsonlite,
+    lubridate,
 URL: https://clinical-pharmacy-saarland-university.github.io/medinfoR/
