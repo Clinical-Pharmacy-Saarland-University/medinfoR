@@ -73,6 +73,7 @@ api_interaction_pzn_batch <- function(creds, pzn_batches) {
 #' @param creds A list containing the access token and host
 #' @param compounds A vector with the Compound names
 #' @param details A boolean indicating if detailed information should be returned
+#' @param doses A boolean indicating if doses should be returned
 #' @return A data frame with the interactions
 #' @export
 #' @seealso [api_login()] to retrieve the login object.
