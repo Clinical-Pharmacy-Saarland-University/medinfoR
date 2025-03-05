@@ -33,7 +33,7 @@ api_create_service_user(
 A message with the result of the operation.
 }
 \description{
-This function creates a service user in the system.
+This function creates a service user in the system. Admin only.
 }
 \examples{
 \dontrun{

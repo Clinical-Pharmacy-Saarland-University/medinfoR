@@ -1,6 +1,6 @@
 #' Create a service user
 #'
-#' This function creates a service user in the system.
+#' This function creates a service user in the system. Admin only.
 #'
 #' @param creds A list with the access token and the host.
 #' @param mail The email of the user.
@@ -37,14 +37,7 @@ api_create_service_user <- function(creds, mail,
 
   url <- paste0(host, "/admin/users/service")
   req <- url |>
-    httr2::request() |>
-    httr2::req_auth_bearer_token(token) |>
-    httr2::req_body_json(body)
-
-  res <- req |>
-    httr2::req_perform() |>
-    httr2::resp_body_json() |>
-    purrr::pluck("message")
+    .post(credentials = creds, body = body)
 
   return(res)
 }
@@ -86,14 +79,34 @@ api_create_user <- function(creds, mail,
 
   url <- paste0(host, "/admin/users")
   req <- url |>
-    httr2::request() |>
-    httr2::req_auth_bearer_token(token) |>
-    httr2::req_body_json(body)
-
-  res <- req |>
-    httr2::req_perform() |>
-    httr2::resp_body_json() |>
-    purrr::pluck("message")
+    .post(credentials = creds, body = body)
 
   return(res)
+}
+
+#' List users
+#'
+#' This function lists all users in the system. Admin only.
+#'
+#' @param creds A list with the access token and the host.
+#' @return A message with the result of the operation.
+#' @export
+#' @examples
+#' \dontrun{
+#' creds <- api_login("https://api.example.com", "user", "password", "user")
+#' api_get_users(creds)
+#' }
+api_get_users <- function(creds) {
+  host <- creds$host
+
+  url <- paste0(host, "/admin/users")
+  local_tz <- Sys.timezone()
+
+  users <- url |>
+    .get(credentials = creds) |>
+    .listToDf() |>
+    dplyr::mutate(last_login = lubridate::with_tz(lubridate::as_datetime(last_login), local_tz)) |>
+    dplyr::mutate(last_login = format(last_login, "%Y-%m-%d %H:%M:%S %Z"))
+
+  return(users)
 }
