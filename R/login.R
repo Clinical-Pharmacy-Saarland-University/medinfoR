@@ -5,6 +5,8 @@
 #'
 #' @docType class
 #' @export
+#' @import R6
+#' @importFrom lubridate with_tz
 #' @keywords API, authentication, token
 #' @examples
 #' # Create an instance with API credentials
@@ -20,13 +22,15 @@
 #' )
 #'
 #' # Check token validity
-#' creds$is_access_token_valid()
+#' creds$access_token_valid()
 #'
 #' # Refresh tokens
-#' creds$refresh_tokens(
+#' \dontrun{
+#' creds$refresh(
 #'   "new_access_token", "new_refresh_token",
 #'   "2025-03-01T12:00:00Z", "2025-03-02T12:00:00Z"
 #' )
+#' }
 ApiCredentials <- R6::R6Class("ApiCredentials",
   public = list(
 

@@ -111,7 +111,10 @@ api_interaction_compound <- function(creds, compounds, details = FALSE, doses = 
 #' @examples
 #' \dontrun{
 #' creds <- api_login("https://api.example.com", "username", "password", "user")
-#' api_interaction_compound_batch(creds, list(list(compounds = c("Aspirin", "Paracetamol"), id = 1, details = TRUE, doses = FALSE)))
+#' api_interaction_compound_batch(creds, list(list(
+#'   compounds = c("Aspirin", "Paracetamol"),
+#'   id = 1, details = TRUE, doses = FALSE
+#' )))
 #' }
 api_interaction_compound_batch <- function(creds, compound_batches) {
   host <- creds$host

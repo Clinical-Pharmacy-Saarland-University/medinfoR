@@ -15,7 +15,10 @@
 #' @examples
 #' \dontrun{
 #' creds <- api_login("https://api.example.com", "user", "password", "user")
-#' api_create_service_user(creds, "test-service@precisiondosing.de", "Test", "Service", "Precision Dosing", "password")
+#' api_create_service_user(
+#'   creds, "test-service@precisiondosing.de",
+#'   "Test", "Service", "Precision Dosing", "password"
+#' )
 #' }
 api_create_service_user <- function(creds, mail,
                                     first_name, last_name, org,
@@ -29,7 +32,8 @@ api_create_service_user <- function(creds, mail,
     last_name = last_name,
     organization = org,
     password = password,
-    role = role)
+    role = role
+  )
 
   url <- paste0(host, "/admin/users/service")
   req <- url |>
@@ -61,7 +65,10 @@ api_create_service_user <- function(creds, mail,
 #' @examples
 #' \dontrun{
 #' creds <- api_login("https://api.example.com", "user", "password", "user")
-#' api_create_user(creds, "test-service@precisiondosing.de", "Test", "Service", "Precision Dosing", "password")
+#' api_create_user(
+#'   creds, "test-service@precisiondosing.de",
+#'   "Test", "Service", "Precision Dosing", "password"
+#' )
 #' }
 api_create_user <- function(creds, mail,
                             first_name, last_name,
@@ -74,7 +81,8 @@ api_create_user <- function(creds, mail,
     first_name = first_name,
     last_name = last_name,
     organization = org,
-    role = role)
+    role = role
+  )
 
   url <- paste0(host, "/admin/users")
   req <- url |>

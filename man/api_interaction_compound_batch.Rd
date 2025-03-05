@@ -20,7 +20,10 @@ Get interactions for a list of compound batches
 \examples{
 \dontrun{
 creds <- api_login("https://api.example.com", "username", "password", "user")
-api_interaction_compound_batch(creds, list(list(compounds = c("Aspirin", "Paracetamol"), id = 1, details = TRUE, doses = FALSE)))
+api_interaction_compound_batch(creds, list(list(
+  compounds = c("Aspirin", "Paracetamol"),
+  id = 1, details = TRUE, doses = FALSE
+)))
 }
 }
 \seealso{

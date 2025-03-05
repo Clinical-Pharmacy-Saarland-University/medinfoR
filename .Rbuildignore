@@ -3,3 +3,6 @@
 ^pkgdown$
 ^\.github$
 ^LICENSE\.md$
+medinfo_logo.svg
+README.md
+.test.R

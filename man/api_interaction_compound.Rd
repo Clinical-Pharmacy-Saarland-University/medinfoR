@@ -12,6 +12,8 @@ api_interaction_compound(creds, compounds, details = FALSE, doses = TRUE)
 \item{compounds}{A vector with the Compound names}
 
 \item{details}{A boolean indicating if detailed information should be returned}
+
+\item{doses}{A boolean indicating if doses should be returned}
 }
 \value{
 A data frame with the interactions

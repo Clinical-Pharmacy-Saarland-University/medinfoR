@@ -38,7 +38,10 @@ This function creates a service user in the system.
 \examples{
 \dontrun{
 creds <- api_login("https://api.example.com", "user", "password", "user")
-api_create_service_user(creds, "test-service@precisiondosing.de", "Test", "Service", "Precision Dosing", "password")
+api_create_service_user(
+  creds, "test-service@precisiondosing.de",
+  "Test", "Service", "Precision Dosing", "password"
+)
 }
 }
 \seealso{
