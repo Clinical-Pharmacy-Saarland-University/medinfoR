@@ -1,0 +1,26 @@
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/LICENSE-text.html</loc></url>
+<url><loc>/LICENSE.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/reference/ApiCredentials.html</loc></url>
+<url><loc>/reference/api_compound_name.html</loc></url>
+<url><loc>/reference/api_create_service_user.html</loc></url>
+<url><loc>/reference/api_create_user.html</loc></url>
+<url><loc>/reference/api_formulations.html</loc></url>
+<url><loc>/reference/api_info.html</loc></url>
+<url><loc>/reference/api_interaction_compound.html</loc></url>
+<url><loc>/reference/api_interaction_compound_batch.html</loc></url>
+<url><loc>/reference/api_interaction_pzn.html</loc></url>
+<url><loc>/reference/api_interaction_pzn_batch.html</loc></url>
+<url><loc>/reference/api_login.html</loc></url>
+<url><loc>/reference/api_ping.html</loc></url>
+<url><loc>/reference/api_priscus_pzn.html</loc></url>
+<url><loc>/reference/api_product_compounds_pzn.html</loc></url>
+<url><loc>/reference/api_product_info_pzn.html</loc></url>
+<url><loc>/reference/api_qt_pzn.html</loc></url>
+<url><loc>/reference/api_user_init_password.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+</urlset>
+
