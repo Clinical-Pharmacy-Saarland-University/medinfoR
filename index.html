@@ -48,7 +48,7 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="medinfor-">medinfoR <img src="medinfo_logo.svg" align="right" width="150"><a class="anchor" aria-label="anchor" href="#medinfor-"></a>
 </h1></div>
-<p>R package to access the medinfo API</p>
+<p>R package to access the medinfo API. The API is created via <a href="https://github.com/Clinical-Pharmacy-Saarland-University/abdataapi-go" class="external-link">https://github.com/Clinical-Pharmacy-Saarland-University/abdataapi-go</a>.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -83,36 +83,9 @@
 <span><span class="va">creds</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api_login.html">api_login</a></span><span class="op">(</span><span class="st">"https://medinfo.precisiondosing.de/api/v1"</span>, <span class="st">"your_username"</span>, <span class="st">"your_password"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="get-formulations-eg-to-test-the-api-connection">Get formulations (e.g. to test the API connection)<a class="anchor" aria-label="anchor" href="#get-formulations-eg-to-test-the-api-connection"></a>
+<h3 id="functionality">Functionality<a class="anchor" aria-label="anchor" href="#functionality"></a>
 </h3>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">formulations</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api_formulations.html">api_formulations</a></span><span class="op">(</span><span class="va">creds</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">formulations</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="drug-drug-interactions-using-pzns">Drug-drug interactions (using PZNs)<a class="anchor" aria-label="anchor" href="#drug-drug-interactions-using-pzns"></a>
-</h3>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># single interaction check</span></span>
-<span><span class="va">pzns</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"03041347"</span>, <span class="st">"05538454"</span>, <span class="st">"13880764"</span>, <span class="st">"00189747"</span>, <span class="st">"01970060"</span>, <span class="st">"00054065"</span>, <span class="st">"17145955"</span>, <span class="st">"00592733"</span>, <span class="st">"13981502"</span><span class="op">)</span></span>
-<span><span class="va">ddis</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api_interaction_pzn.html">api_interaction_pzn</a></span><span class="op">(</span><span class="va">creds</span>, <span class="va">pzns</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">ddis</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># batch interaction check</span></span>
-<span><span class="va">pzn_batches</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>    pzns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"13592031"</span>, <span class="st">"00007350"</span><span class="op">)</span>,</span>
-<span>    id <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>    details <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span>  <span class="op">)</span>,</span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>    pzns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"03041347"</span>, <span class="st">"05538454"</span>, <span class="st">"13880764"</span>, <span class="st">"00189747"</span>, <span class="st">"01970060"</span>, <span class="st">"00054065"</span>, <span class="st">"17145955"</span>, <span class="st">"00592733"</span>, <span class="st">"13981502"</span><span class="op">)</span>,</span>
-<span>    id <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>    details <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/api_interaction_pzn_batch.html">api_interaction_pzn_batch</a></span><span class="op">(</span><span class="va">creds</span>, <span class="va">pzn_batches</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span></code></pre></div>
+<p>You can check all available functions by typing <code>?medinfoR</code> in the R console or via <a href="https://clinical-pharmacy-saarland-university.github.io/medinfoR/">https://clinical-pharmacy-saarland-university.github.io/medinfoR/</a>.</p>
 </div>
 </div>
 </div>
