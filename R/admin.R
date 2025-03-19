@@ -39,7 +39,7 @@ api_create_service_user <- function(creds, mail,
   req <- url |>
     .post(credentials = creds, body = body)
 
-  return(res)
+  return(req)
 }
 
 #' Create a user
@@ -100,13 +100,27 @@ api_get_users <- function(creds) {
   host <- creds$host
 
   url <- paste0(host, "/admin/users")
-  local_tz <- Sys.timezone()
 
   users <- url |>
     .get(credentials = creds) |>
     .listToDf() |>
-    dplyr::mutate(last_login = lubridate::with_tz(lubridate::as_datetime(last_login), local_tz)) |>
-    dplyr::mutate(last_login = format(last_login, "%Y-%m-%d %H:%M:%S %Z"))
+    .fix_dates()
 
   return(users)
+}
+
+.fix_dates <- function(users_table) {
+  local_tz <- Sys.timezone()
+  if (nrow(users_table) == 0) {
+    return(users_table)
+  }
+
+  users_table <- users_table |>
+    dplyr::mutate(last_login = dplyr::case_when(
+      is.na(last_login) ~ NA,
+      .default = lubridate::with_tz(lubridate::as_datetime(last_login), local_tz)
+    )) |>
+    dplyr::mutate(last_login = format(last_login, "%Y-%m-%d %H:%M:%S %Z"))
+
+  return(users_table)
 }
