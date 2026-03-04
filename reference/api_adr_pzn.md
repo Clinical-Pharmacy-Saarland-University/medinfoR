@@ -28,6 +28,10 @@ api_adr_pzn(
   A string with the language. One of `english`, `german` or
   `german-simple`
 
+- details:
+
+  Logical. Whether to return detailed ADR information. Default `FALSE`.
+
 ## Value
 
 A data frame with the ADRs
