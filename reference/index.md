@@ -4,6 +4,8 @@
 
 - [`ApiCredentials`](https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/ApiCredentials.md)
   : ApiCredentials: API Authentication Credentials
+- [`api_adr_pzn()`](https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_adr_pzn.md)
+  : Get ADRs for a list of PZNs
 - [`api_compound_guideline()`](https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_compound_guideline.md)
   : Get pharmacogenetic guidelines for a list of compound names
 - [`api_compound_name()`](https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_compound_name.md)
@@ -38,6 +40,22 @@
   : Get product info for a list of PZNs
 - [`api_qt_pzn()`](https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_qt_pzn.md)
   : Get QT category for a list of PZNs
+- [`api_user_change_password()`](https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_user_change_password.md)
+  : Change password
+- [`api_user_confirm_email_change()`](https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_user_confirm_email_change.md)
+  : Confirm email change
+- [`api_user_confirm_password_reset()`](https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_user_confirm_password_reset.md)
+  : Confirm password reset
+- [`api_user_delete()`](https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_user_delete.md)
+  : Delete user account
 - [`api_user_init_password()`](https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_user_init_password.md)
   : Initialize password This function is used to set the password for a
   new user account.
+- [`api_user_profile()`](https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_user_profile.md)
+  : Get user profile
+- [`api_user_request_email_change()`](https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_user_request_email_change.md)
+  : Request email change
+- [`api_user_request_password_reset()`](https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_user_request_password_reset.md)
+  : Request password reset
+- [`api_user_update_profile()`](https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_user_update_profile.md)
+  : Update user profile

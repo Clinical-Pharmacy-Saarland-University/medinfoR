@@ -6,6 +6,7 @@
 <url><loc>https://clinical-pharmacy-saarland-university.github.io/medinfoR/authors.html</loc></url>
 <url><loc>https://clinical-pharmacy-saarland-university.github.io/medinfoR/index.html</loc></url>
 <url><loc>https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/ApiCredentials.html</loc></url>
+<url><loc>https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_adr_pzn.html</loc></url>
 <url><loc>https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_compound_guideline.html</loc></url>
 <url><loc>https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_compound_name.html</loc></url>
 <url><loc>https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_create_service_user.html</loc></url>
@@ -23,7 +24,15 @@
 <url><loc>https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_product_compounds_pzn.html</loc></url>
 <url><loc>https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_product_info_pzn.html</loc></url>
 <url><loc>https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_qt_pzn.html</loc></url>
+<url><loc>https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_user_change_password.html</loc></url>
+<url><loc>https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_user_confirm_email_change.html</loc></url>
+<url><loc>https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_user_confirm_password_reset.html</loc></url>
+<url><loc>https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_user_delete.html</loc></url>
 <url><loc>https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_user_init_password.html</loc></url>
+<url><loc>https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_user_profile.html</loc></url>
+<url><loc>https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_user_request_email_change.html</loc></url>
+<url><loc>https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_user_request_password_reset.html</loc></url>
+<url><loc>https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_user_update_profile.html</loc></url>
 <url><loc>https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/index.html</loc></url>
 </urlset>
 
