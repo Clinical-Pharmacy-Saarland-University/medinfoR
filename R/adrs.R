@@ -3,6 +3,7 @@
 #' @param creds A list containing the access token and host
 #' @param pzns A vector with the PZNs
 #' @param lang A string with the language. One of `english`, `german` or `german-simple`
+#' @param details Logical. Whether to return detailed ADR information. Default `FALSE`.
 #' @return A data frame with the ADRs
 #' @export
 #' @seealso [api_login()] to retrieve the login object.

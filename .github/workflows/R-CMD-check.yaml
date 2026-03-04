@@ -25,6 +25,12 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
+      # Integration test credentials — add these as repository secrets to enable
+      # integration tests in CI. Tests are skipped automatically when not set.
+      MEDINFO_HOST: ${{ secrets.MEDINFO_HOST }}
+      MEDINFO_USER: ${{ secrets.MEDINFO_USER }}
+      MEDINFO_PASSWORD: ${{ secrets.MEDINFO_PASSWORD }}
+      MEDINFO_ADMIN: ${{ secrets.MEDINFO_ADMIN }}
 
     steps:
       - uses: actions/checkout@v4

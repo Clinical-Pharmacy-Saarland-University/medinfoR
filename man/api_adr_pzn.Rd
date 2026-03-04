@@ -17,6 +17,8 @@ api_adr_pzn(
 \item{pzns}{A vector with the PZNs}
 
 \item{lang}{A string with the language. One of \code{english}, \code{german} or \code{german-simple}}
+
+\item{details}{Logical. Whether to return detailed ADR information. Default \code{FALSE}.}
 }
 \value{
 A data frame with the ADRs

@@ -117,10 +117,10 @@ api_get_users <- function(creds) {
 
   users_table <- users_table |>
     dplyr::mutate(last_login = dplyr::case_when(
-      is.na(last_login) ~ NA,
-      .default = lubridate::with_tz(lubridate::as_datetime(last_login), local_tz)
+      is.na(.data$last_login) ~ NA,
+      .default = lubridate::with_tz(lubridate::as_datetime(.data$last_login), local_tz)
     )) |>
-    dplyr::mutate(last_login = format(last_login, "%Y-%m-%d %H:%M:%S %Z"))
+    dplyr::mutate(last_login = format(.data$last_login, "%Y-%m-%d %H:%M:%S %Z"))
 
   return(users_table)
 }
