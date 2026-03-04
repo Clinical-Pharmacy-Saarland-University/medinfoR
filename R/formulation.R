@@ -21,7 +21,7 @@ api_formulations <- function(creds) {
   formulations <- req |>
     httr2::req_perform() |>
     httr2::resp_body_json() |>
-    purrr::pluck("data") |>
+    purrr::pluck("data", "formulations") |>
     dplyr::bind_rows()
 
   return(formulations)
