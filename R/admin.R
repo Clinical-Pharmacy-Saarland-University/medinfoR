@@ -78,7 +78,7 @@ api_create_user <- function(creds, mail,
   )
 
   url <- paste0(host, "/admin/users")
-  req <- url |>
+  res <- url |>
     .post(credentials = creds, body = body)
 
   return(res)

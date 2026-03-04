@@ -14,6 +14,14 @@
   .request(endpoint, body = body, credentials = credentials)
 }
 
+.patch <- function(endpoint, body, credentials = NULL) {
+  .request(endpoint, body = body, credentials = credentials, method = "PATCH")
+}
+
+.delete <- function(endpoint, credentials = NULL) {
+  .request(endpoint, credentials = credentials, method = "DELETE")
+}
+
 .get <- function(endpoint, parameters = NULL, credentials = NULL) {
   .request(endpoint, parameters = parameters, credentials = credentials)
 }
@@ -61,13 +69,18 @@
   return(res)
 }
 
-.request <- function(endpoint, parameters = NULL, body = NULL, credentials = NULL) {
+.request <- function(endpoint, parameters = NULL, body = NULL, credentials = NULL, method = NULL) {
   req <- endpoint |>
     httr2::request()
 
   if (!is.null(body)) {
     req <- req |>
       httr2::req_body_json(body)
+  }
+
+  if (!is.null(method)) {
+    req <- req |>
+      httr2::req_method(method)
   }
 
   if (!is.null(parameters)) {

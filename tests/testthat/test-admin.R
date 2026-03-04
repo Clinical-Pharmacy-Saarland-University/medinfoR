@@ -62,22 +62,27 @@ test_that("api_get_users returns empty data frame when no users", {
   expect_equal(nrow(result), 0)
 })
 
-# --- api_create_user (known bug) ---
+# --- api_create_user ---
 
-test_that("api_create_user fails due to undefined 'res' variable (known bug)", {
-  # Bug: api_create_user assigns result to `req` but returns `res` (which is undefined).
-  # This test documents the bug so it is caught if the bug is ever fixed.
+test_that("api_create_user posts to /admin/users and returns response", {
+  captured_endpoint <- NULL
+  captured_body <- NULL
   local_mocked_bindings(
-    .post = function(...) list(message = "user created"),
+    .post = function(endpoint, body, credentials = NULL) {
+      captured_endpoint <<- endpoint
+      captured_body <<- body
+      list(message = "user created")
+    },
     .package = "medinfoR"
   )
-  expect_error(
-    api_create_user(
-      make_fake_creds(role = "admin"),
-      "new@example.com", "New", "User", "Test Org"
-    ),
-    "object 'res' not found"
+  result <- api_create_user(
+    make_fake_creds(role = "admin"),
+    "new@example.com", "New", "User", "Test Org"
   )
+  expect_equal(captured_endpoint, "https://test.example.com/api/v1/admin/users")
+  expect_equal(captured_body$email, "new@example.com")
+  expect_equal(captured_body$first_name, "New")
+  expect_equal(result$message, "user created")
 })
 
 # --- api_create_service_user ---

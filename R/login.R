@@ -216,3 +216,210 @@ api_user_init_password <- function(host, user, token, password) {
 
   return(.post(login_url, body))
 }
+
+
+#' Request password reset
+#'
+#' Sends a password reset token to the specified email address. This is a
+#' public endpoint that does not require authentication. Use
+#' [api_user_confirm_password_reset()] to set the new password with the received token.
+#'
+#' @param host The API base URL.
+#' @param email The email address of the account to reset.
+#' @return A named list with the API response message.
+#' @seealso [api_user_confirm_password_reset()] to confirm the reset with the token.
+#' @export
+#' @examples
+#' \dontrun{
+#' api_user_request_password_reset("https://api.example.com", "user@example.com")
+#' }
+api_user_request_password_reset <- function(host, email) {
+  checkmate::assert_string(host)
+  checkmate::assert_string(email)
+  host <- .remove_trailing_slash(host)
+  url <- paste0(host, "/user/password/reset")
+  .post(url, body = list(email = email))
+}
+
+
+#' Confirm password reset
+#'
+#' Sets a new password using the reset token received by email after calling
+#' [api_user_request_password_reset()]. This is a public endpoint that does
+#' not require authentication.
+#'
+#' @param host The API base URL.
+#' @param email The email address of the account.
+#' @param token The reset token received by email.
+#' @param password The new password to set.
+#' @return A named list with the API response message.
+#' @seealso [api_user_request_password_reset()] to request the reset token.
+#' @export
+#' @examples
+#' \dontrun{
+#' api_user_confirm_password_reset(
+#'   "https://api.example.com", "user@example.com", "my_reset_token", "new_password"
+#' )
+#' }
+api_user_confirm_password_reset <- function(host, email, token, password) {
+  checkmate::assert_string(host)
+  checkmate::assert_string(email)
+  checkmate::assert_string(token)
+  checkmate::assert_string(password)
+  host <- .remove_trailing_slash(host)
+  url <- paste0(host, "/user/password/reset/confirm")
+  .post(url, body = list(email = email, token = token, password = password))
+}
+
+
+#' Get user profile
+#'
+#' Retrieves the profile information of the currently authenticated user.
+#'
+#' @param credentials An `ApiCredentials` object from [api_login()].
+#' @return A named list with fields: `email`, `first_name`, `last_name`,
+#'   `organization`, `role`, `last_login`.
+#' @seealso [api_login()] to retrieve credentials.
+#' @seealso [api_user_update_profile()] to update profile information.
+#' @export
+#' @examples
+#' \dontrun{
+#' creds <- api_login("https://api.example.com", "user@example.com", "password")
+#' api_user_profile(creds)
+#' }
+api_user_profile <- function(credentials) {
+  url <- paste0(credentials$host, "/user/profile")
+  .get(url, credentials = credentials)
+}
+
+
+#' Update user profile
+#'
+#' Updates profile information for the currently authenticated user. At least
+#' one field must be provided.
+#'
+#' @param credentials An `ApiCredentials` object from [api_login()].
+#' @param first_name New first name (optional, minimum 2 characters).
+#' @param last_name New last name (optional, minimum 2 characters).
+#' @param organization New organization name (optional, minimum 2 characters).
+#' @return A named list with the API response message.
+#' @seealso [api_login()] to retrieve credentials.
+#' @seealso [api_user_profile()] to retrieve current profile information.
+#' @export
+#' @examples
+#' \dontrun{
+#' creds <- api_login("https://api.example.com", "user@example.com", "password")
+#' api_user_update_profile(creds, first_name = "John", organization = "ACME")
+#' }
+api_user_update_profile <- function(credentials, first_name = NULL, last_name = NULL,
+                                    organization = NULL) {
+  checkmate::assert_string(first_name, min.chars = 2, null.ok = TRUE)
+  checkmate::assert_string(last_name, min.chars = 2, null.ok = TRUE)
+  checkmate::assert_string(organization, min.chars = 2, null.ok = TRUE)
+  if (is.null(first_name) && is.null(last_name) && is.null(organization)) {
+    stop("At least one of 'first_name', 'last_name', or 'organization' must be provided.",
+      call. = FALSE
+    )
+  }
+
+  body <- Filter(Negate(is.null), list(
+    first_name = first_name,
+    last_name = last_name,
+    organization = organization
+  ))
+
+  url <- paste0(credentials$host, "/user/profile")
+  .patch(url, body = body, credentials = credentials)
+}
+
+
+#' Change password
+#'
+#' Changes the password for the currently authenticated user. The new password
+#' becomes active on the next login.
+#'
+#' @param credentials An `ApiCredentials` object from [api_login()].
+#' @param old_password The current password.
+#' @param new_password The new password.
+#' @return A named list with the API response message.
+#' @seealso [api_login()] to retrieve credentials.
+#' @export
+#' @examples
+#' \dontrun{
+#' creds <- api_login("https://api.example.com", "user@example.com", "password")
+#' api_user_change_password(creds, "old_pass", "new_pass")
+#' }
+api_user_change_password <- function(credentials, old_password, new_password) {
+  checkmate::assert_string(old_password)
+  checkmate::assert_string(new_password)
+  url <- paste0(credentials$host, "/user/password")
+  body <- list(old_password = old_password, new_password = new_password)
+  .patch(url, body = body, credentials = credentials)
+}
+
+
+#' Request email change
+#'
+#' Sends an email-change confirmation token to the new email address. The
+#' change must be confirmed via [api_user_confirm_email_change()] and becomes
+#' active on the next login.
+#'
+#' @param credentials An `ApiCredentials` object from [api_login()].
+#' @param email The new email address.
+#' @return A named list with the API response message.
+#' @seealso [api_login()] to retrieve credentials.
+#' @seealso [api_user_confirm_email_change()] to confirm the email change.
+#' @export
+#' @examples
+#' \dontrun{
+#' creds <- api_login("https://api.example.com", "user@example.com", "password")
+#' api_user_request_email_change(creds, "newemail@example.com")
+#' }
+api_user_request_email_change <- function(credentials, email) {
+  checkmate::assert_string(email)
+  url <- paste0(credentials$host, "/user/email")
+  .patch(url, body = list(email = email), credentials = credentials)
+}
+
+
+#' Confirm email change
+#'
+#' Confirms an email change request using the token sent to the new address.
+#' The new email becomes active on the next login.
+#'
+#' @param credentials An `ApiCredentials` object from [api_login()].
+#' @param token The confirmation token received by email.
+#' @return A named list with the API response message.
+#' @seealso [api_login()] to retrieve credentials.
+#' @seealso [api_user_request_email_change()] to initiate the email change.
+#' @export
+#' @examples
+#' \dontrun{
+#' creds <- api_login("https://api.example.com", "user@example.com", "password")
+#' api_user_confirm_email_change(creds, "my_change_token")
+#' }
+api_user_confirm_email_change <- function(credentials, token) {
+  checkmate::assert_string(token)
+  url <- paste0(credentials$host, "/user/email/confirm")
+  .post(url, body = list(token = token), credentials = credentials)
+}
+
+
+#' Delete user account
+#'
+#' Soft-deletes the currently authenticated user's account. The last admin
+#' account cannot be deleted.
+#'
+#' @param credentials An `ApiCredentials` object from [api_login()].
+#' @return A named list with the API response message.
+#' @seealso [api_login()] to retrieve credentials.
+#' @export
+#' @examples
+#' \dontrun{
+#' creds <- api_login("https://api.example.com", "user@example.com", "password")
+#' api_user_delete(creds)
+#' }
+api_user_delete <- function(credentials) {
+  url <- paste0(credentials$host, "/user")
+  .delete(url, credentials = credentials)
+}
