@@ -1,28 +1,39 @@
 Package: medinfoR
-Title: A R package to access the medinfo API.
-Version: 0.0.2.0
+Title: R Client for the medinfo Pharmaceutical Information API
+Version: 1.0.0.0
 Authors@R: c(
-      person("Dominik", "Selzer", , "dominik.selzer@uni-saarland.de", role = c("aut", "cre")),
-      person("Simeon", "Rüdesheim", , "simeon.ruedesheim@uni-saarland.de", role = c("aut", "ctb"))
-      )
-Description: R package to access the medinfo API.
+    person("Dominik", "Selzer", , "dominik.selzer@uni-saarland.de",
+           role = c("aut", "cre")),
+    person("Simeon", "Rüdesheim", , "simeon.ruedesheim@uni-saarland.de",
+           role = c("aut", "ctb"))
+    )
+Description: Provides a complete R interface to the medinfo API
+    (<https://github.com/Clinical-Pharmacy-Saarland-University/abdataapi-go>),
+    a pharmaceutical information service developed at Clinical Pharmacy
+    Saarland University. Covers drug-drug interaction checks (by PZN and
+    compound name, single and batch), adverse drug reactions, pharmacogenetic
+    guidelines (PharmGKB), PRISCUS classifications for elderly patients, QT
+    prolongation risk, product information, formulation codes, and full user
+    account management.
 License: MIT + file LICENSE
 Encoding: UTF-8
+Language: en-US
+URL: https://github.com/Clinical-Pharmacy-Saarland-University/medinfoR,
+    https://clinical-pharmacy-saarland-university.github.io/medinfoR/
+BugReports: https://github.com/Clinical-Pharmacy-Saarland-University/medinfoR/issues
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
-Imports: 
-    dplyr (>= 1.1.0),
-    purrr (>= 1.0.0),
-    httr2 (>= 1.1.0),
-    R6 (>= 2.6.0),
-    tibble (>= 3.2.0),
-    data.table (>= 1.16.0),
-    stringr (>= 1.5.0),
+Imports:
     checkmate (>= 2.3.0),
+    data.table (>= 1.16.0),
+    dplyr (>= 1.1.0),
+    httr2 (>= 1.1.0),
     jsonlite (>= 1.8.0),
     lubridate (>= 1.9.0),
+    purrr (>= 1.0.0),
+    R6 (>= 2.6.0),
+    stringr (>= 1.5.0),
+    tibble (>= 3.2.0)
 Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-URL: https://github.com/Clinical-Pharmacy-Saarland-University/medinfoR
-BugReports: https://github.com/Clinical-Pharmacy-Saarland-University/medinfoR/issues

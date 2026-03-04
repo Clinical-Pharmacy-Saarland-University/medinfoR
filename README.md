@@ -1,5 +1,7 @@
 # medinfoR <img src="medinfo_logo.svg" align="right" width="150" />
 
+[![R-CMD-check](https://github.com/Clinical-Pharmacy-Saarland-University/medinfoR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Clinical-Pharmacy-Saarland-University/medinfoR/actions/workflows/R-CMD-check.yaml)
+
 R client for the **medinfo API** — a pharmaceutical information service built by the [Clinical Pharmacy Saarland University](https://github.com/Clinical-Pharmacy-Saarland-University/abdataapi-go). It provides drug interaction checks, adverse drug reactions (ADRs), pharmacogenetic guidelines, PRISCUS classifications, QT prolongation risk, product information, and more.
 
 ## Installation
