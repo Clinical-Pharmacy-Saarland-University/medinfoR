@@ -1,5 +1,7 @@
 # medinfoR ![](medinfo_logo.svg)
 
+[![R-CMD-check](https://github.com/Clinical-Pharmacy-Saarland-University/medinfoR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Clinical-Pharmacy-Saarland-University/medinfoR/actions/workflows/R-CMD-check.yaml)
+
 R client for the **medinfo API** — a pharmaceutical information service
 built by the [Clinical Pharmacy Saarland
 University](https://github.com/Clinical-Pharmacy-Saarland-University/abdataapi-go).
