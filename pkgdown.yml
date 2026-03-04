@@ -1,8 +1,8 @@
 pandoc: 3.1.11
-pkgdown: 2.1.1
+pkgdown: 2.2.0
 pkgdown_sha: ~
 articles: {}
-last_built: 2025-03-19T12:35Z
+last_built: 2026-03-04T19:21Z
 urls:
   reference: https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference
   article: https://clinical-pharmacy-saarland-university.github.io/medinfoR/articles
