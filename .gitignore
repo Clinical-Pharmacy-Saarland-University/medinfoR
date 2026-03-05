@@ -50,3 +50,4 @@ po/*~
 rsconnect/
 docs
 scripts
+/check

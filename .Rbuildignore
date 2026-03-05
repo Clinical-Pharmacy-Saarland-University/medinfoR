@@ -7,3 +7,4 @@
 medinfo_logo.svg
 README.md
 .test.R
+^doc\.json$

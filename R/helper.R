@@ -264,20 +264,20 @@
     return(TRUE)
   }
 
-  parsed <- tryCatch(utils::package_version(version), error = function(e) NULL)
+  parsed <- tryCatch(numeric_version(version), error = function(e) NULL)
   if (is.null(parsed)) {
     return(TRUE)
   }
 
   if (!is.na(min_version)) {
-    min_parsed <- tryCatch(utils::package_version(min_version), error = function(e) NULL)
+    min_parsed <- tryCatch(numeric_version(min_version), error = function(e) NULL)
     if (!is.null(min_parsed) && parsed < min_parsed) {
       return(FALSE)
     }
   }
 
   if (!is.na(max_version)) {
-    max_parsed <- tryCatch(utils::package_version(max_version), error = function(e) NULL)
+    max_parsed <- tryCatch(numeric_version(max_version), error = function(e) NULL)
     if (!is.null(max_parsed) && parsed > max_parsed) {
       return(FALSE)
     }
