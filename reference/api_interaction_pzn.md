@@ -5,7 +5,7 @@ Get interactions for a list of PZNs
 ## Usage
 
 ``` r
-api_interaction_pzn(creds, pzns, details = FALSE)
+api_interaction_pzn(creds, pzns, details = FALSE, text = FALSE)
 ```
 
 ## Arguments
@@ -22,6 +22,10 @@ api_interaction_pzn(creds, pzns, details = FALSE)
 
   A boolean indicating if detailed information should be returned
 
+- text:
+
+  A boolean indicating if interaction text should be returned
+
 ## Value
 
 A data frame with the interactions
@@ -36,6 +40,6 @@ to retrieve the login object.
 ``` r
 if (FALSE) { # \dontrun{
 creds <- api_login("https://api.example.com", "username", "password", "user")
-api_interaction_pzn(creds, c("PZN1", "PZN2"), details = TRUE)
+api_interaction_pzn(creds, c("PZN1", "PZN2"), details = TRUE, text = TRUE)
 } # }
 ```

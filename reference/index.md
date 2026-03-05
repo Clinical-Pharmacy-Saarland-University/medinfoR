@@ -32,12 +32,16 @@
   : Login to the API
 - [`api_ping()`](https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_ping.md)
   : Ping the API
+- [`api_priscus_compound()`](https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_priscus_compound.md)
+  : Get PRISCUS status for a list of compound names
 - [`api_priscus_pzn()`](https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_priscus_pzn.md)
   : Get PRISCUS status for a list of PZNs
 - [`api_product_compounds_pzn()`](https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_product_compounds_pzn.md)
   : Get active compounds for a list of PZNs
 - [`api_product_info_pzn()`](https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_product_info_pzn.md)
   : Get product info for a list of PZNs
+- [`api_qt_compound()`](https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_qt_compound.md)
+  : Get QT category for a list of compound names
 - [`api_qt_pzn()`](https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_qt_pzn.md)
   : Get QT category for a list of PZNs
 - [`api_user_change_password()`](https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_user_change_password.md)

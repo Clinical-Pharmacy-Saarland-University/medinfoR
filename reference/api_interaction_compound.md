@@ -5,7 +5,7 @@ Get interactions for a list of Compounds
 ## Usage
 
 ``` r
-api_interaction_compound(creds, compounds, details = FALSE, doses = TRUE)
+api_interaction_compound(creds, compounds, details = FALSE, doses = TRUE, text = FALSE)
 ```
 
 ## Arguments
@@ -26,6 +26,10 @@ api_interaction_compound(creds, compounds, details = FALSE, doses = TRUE)
 
   A boolean indicating if doses should be returned
 
+- text:
+
+  A boolean indicating if interaction text should be returned
+
 ## Value
 
 A data frame with the interactions
@@ -40,6 +44,6 @@ to retrieve the login object.
 ``` r
 if (FALSE) { # \dontrun{
 creds <- api_login("https://api.example.com", "username", "password", "user")
-api_interaction_compound(creds, c("Aspirin", "Paracetamol"), details = TRUE)
+api_interaction_compound(creds, c("Aspirin", "Paracetamol"), details = TRUE, text = TRUE)
 } # }
 ```
