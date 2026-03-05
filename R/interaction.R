@@ -3,22 +3,27 @@
 #' @param creds A list containing the access token and host
 #' @param pzns A vector with the PZNs
 #' @param details A boolean indicating if detailed information should be returned
+#' @param text A boolean indicating if interaction text should be returned
 #' @return A data frame with the interactions
 #' @export
 #' @seealso [api_login()] to retrieve the login object.
 #' @examples
 #' \dontrun{
 #' creds <- api_login("https://api.example.com", "username", "password", "user")
-#' api_interaction_pzn(creds, c("PZN1", "PZN2"), details = TRUE)
+#' api_interaction_pzn(creds, c("PZN1", "PZN2"), details = TRUE, text = TRUE)
 #' }
-api_interaction_pzn <- function(creds, pzns, details = FALSE) {
+api_interaction_pzn <- function(creds, pzns, details = FALSE, text = FALSE) {
   host <- creds$host
 
   interactions_url <- paste0(host, "/interactions/pzns")
 
   interactions <- .get(
     interactions_url,
-    parameters = list(pzns = paste(pzns, collapse = ","), details = tolower(as.character(details))),
+    parameters = list(
+      pzns = paste(pzns, collapse = ","),
+      details = tolower(as.character(details)),
+      text = tolower(as.character(text))
+    ),
     credentials = creds
   ) |>
     .listToDf()
@@ -74,15 +79,16 @@ api_interaction_pzn_batch <- function(creds, pzn_batches) {
 #' @param compounds A vector with the Compound names
 #' @param details A boolean indicating if detailed information should be returned
 #' @param doses A boolean indicating if doses should be returned
+#' @param text A boolean indicating if interaction text should be returned
 #' @return A data frame with the interactions
 #' @export
 #' @seealso [api_login()] to retrieve the login object.
 #' @examples
 #' \dontrun{
 #' creds <- api_login("https://api.example.com", "username", "password", "user")
-#' api_interaction_compound(creds, c("Aspirin", "Paracetamol"), details = TRUE)
+#' api_interaction_compound(creds, c("Aspirin", "Paracetamol"), details = TRUE, text = TRUE)
 #' }
-api_interaction_compound <- function(creds, compounds, details = FALSE, doses = TRUE) {
+api_interaction_compound <- function(creds, compounds, details = FALSE, doses = TRUE, text = FALSE) {
   token <- creds$access_token
   host <- creds$host
 
@@ -92,7 +98,8 @@ api_interaction_compound <- function(creds, compounds, details = FALSE, doses = 
     parameters = list(
       compounds = paste0(compounds, collapse = ","),
       details = tolower(as.character(details)),
-      doses = tolower(as.character(doses))
+      doses = tolower(as.character(doses)),
+      text = tolower(as.character(text))
     ),
     credentials = creds
   ) |>

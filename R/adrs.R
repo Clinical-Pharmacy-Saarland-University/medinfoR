@@ -20,7 +20,11 @@ api_adr_pzn <- function(creds, pzns, lang = c("english", "german", "german-simpl
 
   adrs <- .get(
     adrs_url,
-    parameters = list(pzns = paste(pzns, collapse = ","), lang = lang),
+    parameters = list(
+      pzns = paste(pzns, collapse = ","),
+      lang = lang,
+      details = tolower(as.character(details))
+    ),
     credentials = creds
   ) |>
     .listToDf()

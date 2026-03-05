@@ -40,6 +40,19 @@ test_that("api_priscus_pzn passes pzns as comma-separated string", {
   expect_equal(captured_params$pzns, "11111111,22222222")
 })
 
+test_that("api_priscus_compound passes compounds as comma-separated string", {
+  captured_params <- NULL
+  local_mocked_bindings(
+    .get = function(endpoint, parameters = NULL, credentials = NULL) {
+      captured_params <<- parameters
+      list()
+    },
+    .package = "medinfoR"
+  )
+  api_priscus_compound(make_fake_creds(), c("Aspirin", "Metoprolol"))
+  expect_equal(captured_params$compounds, "Aspirin,Metoprolol")
+})
+
 # --- api_qt_pzn ---
 
 test_that("api_qt_pzn returns a data frame with pzn and qt_category columns", {
@@ -65,6 +78,19 @@ test_that("api_qt_pzn returns empty data frame when no results", {
   result <- api_qt_pzn(make_fake_creds(), "00000000")
   expect_s3_class(result, "data.frame")
   expect_equal(nrow(result), 0)
+})
+
+test_that("api_qt_compound passes compounds as comma-separated string", {
+  captured_params <- NULL
+  local_mocked_bindings(
+    .get = function(endpoint, parameters = NULL, credentials = NULL) {
+      captured_params <<- parameters
+      list()
+    },
+    .package = "medinfoR"
+  )
+  api_qt_compound(make_fake_creds(), c("Aspirin", "Metoprolol"))
+  expect_equal(captured_params$compounds, "Aspirin,Metoprolol")
 })
 
 # --- api_adr_pzn ---
@@ -109,6 +135,19 @@ test_that("api_adr_pzn passes lang parameter correctly", {
 
   api_adr_pzn(make_fake_creds(), "12345678", lang = "german-simple")
   expect_equal(captured_params$lang, "german-simple")
+})
+
+test_that("api_adr_pzn passes details parameter", {
+  captured_params <- NULL
+  local_mocked_bindings(
+    .get = function(endpoint, parameters = NULL, credentials = NULL) {
+      captured_params <<- parameters
+      list()
+    },
+    .package = "medinfoR"
+  )
+  api_adr_pzn(make_fake_creds(), "12345678", details = TRUE)
+  expect_equal(captured_params$details, "true")
 })
 
 test_that("api_adr_pzn rejects invalid lang", {

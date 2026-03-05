@@ -4,7 +4,7 @@
 \alias{api_interaction_pzn}
 \title{Get interactions for a list of PZNs}
 \usage{
-api_interaction_pzn(creds, pzns, details = FALSE)
+api_interaction_pzn(creds, pzns, details = FALSE, text = FALSE)
 }
 \arguments{
 \item{creds}{A list containing the access token and host}
@@ -12,6 +12,8 @@ api_interaction_pzn(creds, pzns, details = FALSE)
 \item{pzns}{A vector with the PZNs}
 
 \item{details}{A boolean indicating if detailed information should be returned}
+
+\item{text}{A boolean indicating if interaction text should be returned}
 }
 \value{
 A data frame with the interactions
@@ -22,7 +24,7 @@ Get interactions for a list of PZNs
 \examples{
 \dontrun{
 creds <- api_login("https://api.example.com", "username", "password", "user")
-api_interaction_pzn(creds, c("PZN1", "PZN2"), details = TRUE)
+api_interaction_pzn(creds, c("PZN1", "PZN2"), details = TRUE, text = TRUE)
 }
 }
 \seealso{

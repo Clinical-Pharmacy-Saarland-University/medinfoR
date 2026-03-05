@@ -53,6 +53,19 @@ test_that("api_interaction_pzn passes details parameter", {
   expect_equal(captured_params$details, "true")
 })
 
+test_that("api_interaction_pzn passes text parameter", {
+  captured_params <- NULL
+  local_mocked_bindings(
+    .get = function(endpoint, parameters = NULL, credentials = NULL) {
+      captured_params <<- parameters
+      list()
+    },
+    .package = "medinfoR"
+  )
+  api_interaction_pzn(make_fake_creds(), "12345678", text = TRUE)
+  expect_equal(captured_params$text, "true")
+})
+
 test_that("api_interaction_pzn passes pzns as comma-separated string", {
   captured_params <- NULL
   local_mocked_bindings(
@@ -116,7 +129,7 @@ test_that("api_interaction_compound returns a data frame", {
   expect_equal(nrow(result), 2)
 })
 
-test_that("api_interaction_compound passes doses and details parameters", {
+test_that("api_interaction_compound passes doses, details and text parameters", {
   captured_params <- NULL
   local_mocked_bindings(
     .get = function(endpoint, parameters = NULL, credentials = NULL) {
@@ -125,9 +138,10 @@ test_that("api_interaction_compound passes doses and details parameters", {
     },
     .package = "medinfoR"
   )
-  api_interaction_compound(make_fake_creds(), c("Aspirin"), details = TRUE, doses = FALSE)
+  api_interaction_compound(make_fake_creds(), c("Aspirin"), details = TRUE, doses = FALSE, text = TRUE)
   expect_equal(captured_params$details, "true")
   expect_equal(captured_params$doses, "false")
+  expect_equal(captured_params$text, "true")
 })
 
 # --- api_interaction_compound_batch ---
