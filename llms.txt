@@ -251,6 +251,8 @@ pkgdown::build_site()    # build the pkgdown reference site
 
 - [`ApiCredentials`](https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/ApiCredentials.md)
   : ApiCredentials: API Authentication Credentials
+- [`api_adr_compound()`](https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_adr_compound.md)
+  : Get ADRs for a list of compounds
 - [`api_adr_pzn()`](https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_adr_pzn.md)
   : Get ADRs for a list of PZNs
 - [`api_compound_guideline()`](https://clinical-pharmacy-saarland-university.github.io/medinfoR/reference/api_compound_guideline.md)
