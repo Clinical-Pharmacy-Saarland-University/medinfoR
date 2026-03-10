@@ -36,3 +36,10 @@ get_test_creds <- function() {
     Sys.getenv("MEDINFO_PASSWORD")
   )
 }
+
+skip_if_not_dev_host <- function() {
+  skip_if(
+    !grepl("medinfo-dev\\.", Sys.getenv("MEDINFO_HOST")),
+    "Compound ADR endpoint is currently only available on medinfo-dev hosts"
+  )
+}

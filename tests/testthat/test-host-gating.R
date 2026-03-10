@@ -70,3 +70,23 @@ test_that("text parameter is allowed on medinfo-dev channel", {
   )
   expect_true(called)
 })
+
+test_that("compound ADR endpoint is blocked on medinfo channel", {
+  res <- medinfoR:::.endpoint_supported(
+    method = "GET",
+    path = "/adrs/compounds",
+    channel = "medinfo",
+    version = "1.0.0"
+  )
+  expect_false(res$supported)
+})
+
+test_that("compound ADR endpoint is allowed on medinfo-dev channel", {
+  res <- medinfoR:::.endpoint_supported(
+    method = "GET",
+    path = "/adrs/compounds",
+    channel = "medinfo-dev",
+    version = "1.0.0"
+  )
+  expect_true(res$supported)
+})

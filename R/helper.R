@@ -101,7 +101,8 @@
 .endpoint_channel_overrides <- function() {
   list(
     "GET /qt/compounds" = c("medinfo-dev", "unknown"),
-    "GET /priscus/compounds" = c("medinfo-dev", "unknown")
+    "GET /priscus/compounds" = c("medinfo-dev", "unknown"),
+    "GET /adrs/compounds" = c("medinfo-dev", "unknown")
   )
 }
 
