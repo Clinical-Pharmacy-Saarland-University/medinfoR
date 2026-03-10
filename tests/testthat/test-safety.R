@@ -166,3 +166,72 @@ test_that("api_adr_pzn returns empty data frame for unknown PZN", {
   expect_s3_class(result, "data.frame")
   expect_equal(nrow(result), 0)
 })
+
+test_that("api_adr_compound returns a data frame", {
+  local_mocked_bindings(
+    .get = function(...) list(
+      list(compound = "Aspirin", description = "Nausea", frequency_code = "common"),
+      list(compound = "Ibuprofen", description = "Headache", frequency_code = "very_common")
+    ),
+    .package = "medinfoR"
+  )
+  result <- api_adr_compound(make_fake_creds(), c("Aspirin", "Ibuprofen"))
+  expect_s3_class(result, "data.frame")
+  expect_equal(nrow(result), 2)
+})
+
+test_that("api_adr_compound passes compounds as comma-separated string", {
+  captured_params <- NULL
+  local_mocked_bindings(
+    .get = function(endpoint, parameters = NULL, credentials = NULL) {
+      captured_params <<- parameters
+      list()
+    },
+    .package = "medinfoR"
+  )
+  api_adr_compound(make_fake_creds(), c("Aspirin", "Metoprolol"))
+  expect_equal(captured_params$compounds, "Aspirin,Metoprolol")
+})
+
+test_that("api_adr_compound defaults to english language", {
+  captured_params <- NULL
+  local_mocked_bindings(
+    .get = function(endpoint, parameters = NULL, credentials = NULL) {
+      captured_params <<- parameters
+      list()
+    },
+    .package = "medinfoR"
+  )
+  api_adr_compound(make_fake_creds(), "Aspirin")
+  expect_equal(captured_params$lang, "english")
+})
+
+test_that("api_adr_compound passes details parameter", {
+  captured_params <- NULL
+  local_mocked_bindings(
+    .get = function(endpoint, parameters = NULL, credentials = NULL) {
+      captured_params <<- parameters
+      list()
+    },
+    .package = "medinfoR"
+  )
+  api_adr_compound(make_fake_creds(), "Aspirin", details = TRUE)
+  expect_equal(captured_params$details, "true")
+})
+
+test_that("api_adr_compound rejects invalid lang", {
+  expect_error(
+    api_adr_compound(make_fake_creds(), "Aspirin", lang = "french"),
+    "'arg' should be one of"
+  )
+})
+
+test_that("api_adr_compound returns empty data frame for unknown compound", {
+  local_mocked_bindings(
+    .get = function(...) list(),
+    .package = "medinfoR"
+  )
+  result <- api_adr_compound(make_fake_creds(), "NotARealCompound")
+  expect_s3_class(result, "data.frame")
+  expect_equal(nrow(result), 0)
+})

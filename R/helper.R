@@ -79,7 +79,7 @@
       "GET", "GET", "POST", "POST", "POST", "POST", "GET", "PATCH",
       "PATCH", "PATCH", "POST", "DELETE", "POST", "POST", "POST", "GET",
       "GET", "GET", "GET", "POST", "GET", "POST", "GET", "GET", "GET",
-      "GET", "GET", "GET", "GET", "GET"
+      "GET", "GET", "GET", "GET", "GET", "GET"
     ),
     path = c(
       "/sys/ping", "/sys/info", "/user/login", "/user/password/init",
@@ -90,7 +90,7 @@
       "/interactions/pzns", "/interactions/pzns", "/interactions/compounds",
       "/interactions/compounds", "/product/activecompounds/pzns",
       "/product/info/pzns", "/qt/pzns", "/priscus/pzns", "/adrs/pzns",
-      "/formulations", "/qt/compounds", "/priscus/compounds"
+      "/formulations", "/qt/compounds", "/priscus/compounds", "/adrs/compounds"
     ),
     min_version = NA_character_,
     max_version = NA_character_,
